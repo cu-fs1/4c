@@ -1,23 +1,21 @@
-import express from "express";
-import cors from "cors";
-import cardsRouter from "./routes/cards.js";
+import express from 'express';
+import cors from 'cors';
+import client from './client.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(cors());
-app.use(express.json()); // Allows us to parse JSON bodies from POST requests
+app.use(express.json());
 
-// Base Route
-app.get("/", (req, res) => {
-  res.send("Welcome to the Card Collection API!");
+app.get('/', (req, res) => {
+    res.send('Ticket Booking API with Redis Locks');
 });
 
-// Mount card routes
-app.use('/cards', cardsRouter);
+// Use the booking routes
+app.use('/api', bookingRoutes);
 
-// Start Server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
