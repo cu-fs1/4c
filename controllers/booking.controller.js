@@ -1,4 +1,4 @@
-import { lockSeat, getSeatTTL, bookSeatValues } from '@/models/seatModel.js';
+import { lockSeat, getSeatTTL, bookSeatValues } from '../models/seat.model.js';
 
 export const bookSeat = async (req, res) => {
     const { seat_number } = req.body;

@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import client from './client.js';
-import bookingRoutes from './routes/bookingRoutes.js';
+import bookingRoutes from './routes/booking.routes.js';
 
 const app = express();
 const PORT = 3000;
