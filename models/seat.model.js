@@ -1,4 +1,4 @@
-import client from '../client.js';
+import client from '../config/redis.js';
 
 export const bookSeatValues = {
     LOCKED: 'locked',

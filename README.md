@@ -21,7 +21,8 @@ A Node.js Express API for managing seat bookings with distributed locking using 
 ```
 4c/
 ├── index.js                      # Main application entry point
-├── client.js                     # Redis client configuration
+├── config/
+│   └── redis.js                  # Redis client configuration
 ├── controllers/
 │   └── booking.controller.js     # Booking business logic
 ├── models/
@@ -43,7 +44,7 @@ cd 4c
 pnpm install
 ```
 
-3. Configure Redis connection in `client.js` with your Redis instance credentials
+3. Configure Redis connection in `.env` with your Redis instance credentials (see `.env.example`)
 
 ## Usage (pnpm only)
 
@@ -131,21 +132,21 @@ Redis guarantees that the `SET` with `NX` is atomic, so only the first request c
 
 ## Redis Configuration
 
-The application uses Redis Cloud with the following connection settings:
-- Host: `redis-13365.c330.asia-south1-1.gce.cloud.redislabs.com`
-- Port: `13365`
-- Connection timeout: 20 seconds
+The application uses Redis Cloud. Configure your connection in the `.env` file:
+- `REDIS_HOST`: Your Redis host
+- `REDIS_PORT`: Your Redis port
+- `REDIS_PASSWORD`: Your Redis password
+- `REDIS_USERNAME`: Your Redis username (default: 'default')
 
-**Note**: Update the credentials in `client.js` with your own Redis instance.
+**Note**: The configuration is loaded from `.env` in `config/redis.js`.
 
 ## Development
 
 ### File Paths
 
-The project uses path aliases with `@/` prefix for cleaner imports:
-- `@/client.js` → Redis client
-- `@/models/seatModel.js` → Seat locking functions
-- `@/controllers/bookingController.js` → Request handlers
+- `config/redis.js` → Redis client
+- `models/seat.model.js` → Seat locking functions
+- `controllers/booking.controller.js` → Request handlers
 
 ## License
 
